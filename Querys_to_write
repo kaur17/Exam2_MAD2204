@@ -110,12 +110,30 @@ INSERT INTO Package VALUES(5, 1, 'Undeclared', 100.0, 5, 1);
 Create all select queries as VIEW Object and name it as v1...vn
 
 Q1) Display employess who name is "Turanga Leela" along with its shipment dertails.
+    create view v1 as select e.name,s.* from employee as e join shipment s on e.employeeid=s.manager where e.name='Turanga leela';
+
 Q2) List those packages which are intented for client whose ids are 1,5 or 6
+    create view v2 as select p.* from package as p JOIN client as c on accountnumber=p.recipient where c.accountnumber in(1,5,6); 
+
 Q3) Display name of emnployee and plant which are cleared
+     CREATE VIEW V3 AS SELECT NAME FROM EMPLOYEE AS E JOIN PACKAGE AS P ON CONTENTS=E.NAME WHERE P.CONTENTS='cleared';
+
 Q4) Display details of shipment data (Month, Day YYYY), sender and receiver name whose package weight is between 5 and 10
+     CREATE VIEW V4 AS SELECT S.* FROM SHIPMENT AS S JOIN PACKAGE AS P ON SENDER AND RECIPIENT=P.SENDER AND P.RECIPIENT WHERE P.WEIGHT BETWEEN 5 AND 10;
+
 Q5) Give details of those shipments which are currently processed at plant name "Mars" or "Amazonia"
+    
+
 Q6) List client names whose pakages are "Undeclared"
+     create view v5 as select c.* from client as c JOIN package as p on contents =p.client where p.content='undeclared';
+ 
 Q7) Display those employees details containing salary format as $2,700.00
+    CREATE VIEW V7 AS SELECT NAME CONCAT('$',FORMAT(SALARY,'AR_N'),'.00') AS SALARY FROM EMPLOYEE;
+
 Q8) Write query to Add remarks of those employee which are never remarked before.
+    
+
 Q9) Display employee details in following format "Phillip J. Fry is Delivery boy and earns $7,500.00/month"
+    SELECT NAME CONCAT(('NAME', is ,'position', and earns , format'ar_n'),'.00'/month) from employee;
+
 Q10) Update shipment date to current date for all data having NULL value
